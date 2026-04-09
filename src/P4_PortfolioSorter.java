@@ -14,7 +14,7 @@ class Asset {
         return ticker + ":" + (int)returnRate + "%";
     }
 }
-public class PortfolioSorter {
+public class P4_PortfolioSorter {
     public static void mergeSort(Asset[] assets, int left, int right) {
         if (left < right) {
             int mid = left + (right - left) / 2;

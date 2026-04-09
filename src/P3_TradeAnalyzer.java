@@ -15,7 +15,7 @@ class Trade {
     }
 }
 
-public class TradeAnalyzer {
+public class P3_TradeAnalyzer {
     public static void mergeSort(Trade[] trades, int left, int right) {
         if (left < right) {
             int mid = left + (right - left) / 2;

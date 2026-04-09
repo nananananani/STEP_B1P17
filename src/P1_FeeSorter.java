@@ -16,7 +16,7 @@ class Transaction {
     }
 }
 
-public class FeeSorter{
+public class P1_FeeSorter{
     public static void bubbleSort(List<Transaction> transactions) {
         int n = transactions.size();
         int swaps = 0;

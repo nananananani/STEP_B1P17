@@ -16,7 +16,7 @@ class Client {
         return name + ":" + riskScore;
     }
 }
-public class RiskManager {
+public class P2_RiskManager {
     public static void bubbleSortAsc(Client[] clients) {
         int n = clients.length;
         int swaps = 0;
