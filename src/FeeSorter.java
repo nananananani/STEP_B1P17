@@ -1,19 +1,15 @@
 import java.util.ArrayList;
 import java.util.List;
-
-// This class represents a single Bank Receipt
 class Transaction {
     String id;
     double fee;
-    long timestamp; // Time represented as a number (e.g., 1015 for 10:15)
+    long timestamp;
 
     public Transaction(String id, double fee, long timestamp) {
         this.id = id;
         this.fee = fee;
         this.timestamp = timestamp;
     }
-
-    // This tells IntelliJ how to "print" the receipt in the console
     @Override
     public String toString() {
         return id + ":" + fee + (timestamp > 0 ? "@" + timestamp : "");
@@ -21,8 +17,6 @@ class Transaction {
 }
 
 public class FeeSorter{
-
-    // BUBBLE SORT: Good for tiny batches (swaps neighbors)
     public static void bubbleSort(List<Transaction> transactions) {
         int n = transactions.size();
         int swaps = 0;
@@ -33,7 +27,6 @@ public class FeeSorter{
             passes++;
             for (int j = 0; j < n - i - 1; j++) {
                 if (transactions.get(j).fee > transactions.get(j + 1).fee) {
-                    // Swap the items
                     Transaction temp = transactions.get(j);
                     transactions.set(j, transactions.get(j + 1));
                     transactions.set(j + 1, temp);
@@ -45,15 +38,11 @@ public class FeeSorter{
         }
         System.out.println("BubbleSort (fees): " + transactions + " // " + passes + " passes, " + swaps + " swaps");
     }
-
-    // INSERTION SORT: Good for medium batches (slides items into place)
     public static void insertionSort(List<Transaction> transactions) {
         int n = transactions.size();
         for (int i = 1; i < n; ++i) {
             Transaction key = transactions.get(i);
             int j = i - 1;
-
-            // Check Fee first; if Fees are equal, check the Time (Timestamp)
             while (j >= 0 && (transactions.get(j).fee > key.fee ||
                     (transactions.get(j).fee == key.fee && transactions.get(j).timestamp > key.timestamp))) {
                 transactions.set(j + 1, transactions.get(j));
@@ -63,8 +52,6 @@ public class FeeSorter{
         }
         System.out.println("InsertionSort (fee+ts): " + transactions);
     }
-
-    // OUTLIER CHECK: Looks for suspicious fees
     public static void flagOutliers(List<Transaction> transactions) {
         List<String> outliers = new ArrayList<>();
         for (Transaction t : transactions) {
@@ -78,18 +65,13 @@ public class FeeSorter{
         } else {
             System.out.println(outliers);
         }
-    }
-
-    public static void main(String[] args) {
-        // Create our messy pile of transactions
+    }public static void main(String[] args) {
         List<Transaction> data = new ArrayList<>();
         data.add(new Transaction("id1", 10.5, 1000));
         data.add(new Transaction("id2", 25.0, 930));
         data.add(new Transaction("id3", 5.0, 1015));
-
-        // Run the audit
         System.out.println("--- Audit Report ---");
-        bubbleSort(new ArrayList<>(data)); // We use 'new ArrayList' to keep the original safe
+        bubbleSort(new ArrayList<>(data));
         insertionSort(new ArrayList<>(data));
         flagOutliers(data);
     }
